@@ -2,7 +2,11 @@
 
 # Projekt-Kontext — linktree-app
 
-**Vision:** Linktree-Style SaaS-Webapp. Nutzer:innen legen ein Konto an, pflegen eine öffentliche Profilseite mit kuratierten Links (Bio + Avatar + Linkliste), erreichbar unter eindeutiger URL. Wird in Phase 2b (Sparring) präzisiert.
+**Vision:** Linktree-Klon als Kurs-/Demo-Projekt. User registrieren sich mit E-Mail + Passwort + Username, bekommen eine Public-Page unter `/u/<username>` mit Bio, Avatar-URL und Drag-and-Drop-sortierbarer Linkliste. Theme = ein user-gewählter Hex-Accent + Auto-Foreground-Kontrast (WCAG). MVP bewusst minimal: kein OAuth, keine Analytics, kein Storage, keine Embeds.
+
+Volle Entscheidungs-Tabelle: `references/vision.md` (20 Punkte aus Discovery + Sparring).
+Drag-and-Drop: **dnd-kit** (nicht Framer Reorder — Mobile-Touch-Issues).
+Auth-Package: **`@supabase/ssr`** (nicht `auth-helpers-nextjs` — deprecated).
 
 ## Kommunikation
 - Deutsch, RPL (respektvoll, pragmatisch, lösungsorientiert)

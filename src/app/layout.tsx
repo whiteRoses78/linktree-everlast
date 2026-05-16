@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono, PT_Serif } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
+import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -20,8 +22,15 @@ const ptSerif = PT_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "linktree-app",
+  title: {
+    default: "linktree-app",
+    template: "%s · linktree-app",
+  },
   description: "Linktree-Style Profilseiten mit kuratierten Links.",
+  // Demo-Projekt: bewusst nicht in Google indexieren, um die TMG/DSGVO-
+  // Grauzone für private Lernprojekte zu wahren. Vor produktivem Betrieb
+  // diese Zeile entfernen.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -36,6 +45,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
+        <Footer />
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );

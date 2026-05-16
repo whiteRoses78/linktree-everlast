@@ -180,4 +180,98 @@
   html {
     @apply font-sans;
   }
+
+  /* Respect user OS-Setting: kein Movement bei prefers-reduced-motion.
+     Transitions auf 0.01ms statt 0 — sonst überspringt der Browser
+     transitionend-Events und State-Maschinen (z.B. Dialog-Close)
+     verklemmen. Standard-Pattern von a11y-project.com. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Animated Background Orbs (Public-Page-only)
+
+   Drei Orbs, die langsam driften. Farben werden über `--accent` und
+   `--primary` injiziert — auf Public-Pages mit Per-User-Accent
+   adoptieren die Orbs automatisch die User-Farbe.
+
+   Performance:
+   - `will-change: transform` aktiviert GPU-Compositing
+   - `filter: blur()` ist teuer, deshalb nur 3 Orbs und keine
+     gleichzeitige opacity-Animation
+   - `pointer-events: none` ist auf dem Wrapper, nicht hier nötig
+   ───────────────────────────────────────────────────────────────────── */
+
+.bg-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+  opacity: 0.2;
+}
+
+.bg-orb-1 {
+  top: -10%;
+  left: -10%;
+  width: 480px;
+  height: 480px;
+  background: var(--accent);
+  animation: bg-orb-drift-1 22s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  top: 30%;
+  right: -15%;
+  width: 360px;
+  height: 360px;
+  background: var(--primary);
+  animation: bg-orb-drift-2 26s ease-in-out infinite;
+  opacity: 0.15;
+}
+
+.bg-orb-3 {
+  bottom: -10%;
+  left: 30%;
+  width: 420px;
+  height: 420px;
+  background: var(--accent);
+  animation: bg-orb-drift-3 20s ease-in-out infinite;
+  opacity: 0.18;
+}
+
+/* Mobile: halbierter Blur + kleinere Orbs ≈ 50% weniger GPU-Last.
+   Visueller Effekt bleibt erkennbar, scrollen wird auf Low-End-iPhones flüssig. */
+@media (max-width: 640px) {
+  .bg-orb {
+    filter: blur(40px);
+  }
+  .bg-orb-1 { width: 320px; height: 320px; }
+  .bg-orb-2 { width: 240px; height: 240px; }
+  .bg-orb-3 { width: 280px; height: 280px; }
+}
+
+/* translate3d statt translate → erzwingt GPU-Compositing-Layer auch
+   während der Animation (translateZ(0) auf .bg-orb würde überschrieben). */
+@keyframes bg-orb-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, 60px, 0) scale(1.08); }
+}
+
+@keyframes bg-orb-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-50px, 40px, 0) scale(1.05); }
+}
+
+@keyframes bg-orb-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(30px, -50px, 0) scale(1.1); }
 }
