@@ -63,9 +63,14 @@ export default function ImpressumPage() {
           </p>
           <p className="text-sm">
             <span className="text-muted-foreground">GitHub: </span>
-            <span className="font-mono text-foreground">
-              (wird beim Deploy in Phase 6 verlinkt)
-            </span>
+            <a
+              href="https://github.com/whiteRoses78/linktree-everlast"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-foreground underline-offset-4 hover:underline focus-visible:underline"
+            >
+              github.com/whiteRoses78/linktree-everlast
+            </a>
           </p>
         </section>
 
