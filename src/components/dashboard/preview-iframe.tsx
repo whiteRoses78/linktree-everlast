@@ -18,7 +18,7 @@ export function PreviewIframe({ username, reloadKey }: PreviewIframeProps) {
         src={`/u/${username}?preview=1`}
         title={`Vorschau von @${username}`}
         className="aspect-[9/16] w-full bg-background"
-        sandbox="allow-same-origin"
+        sandbox="allow-same-origin allow-scripts"
       />
     </div>
   );

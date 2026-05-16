@@ -58,7 +58,10 @@ Diese Themen kommen in **Phase 5 (Polish)** oder **Phase 6 (Deploy)** und brauch
 - ✅ **Mobile-Detail-Pass** (Padding, Tap-Target, Truncation) — responsive-Pattern verifiziert, Viewport-Emulation eingeschränkt
 - ✅ **Impressum + Datenschutz + Footer** (TMG §5 + DSGVO Art. 13/14) + globaler `noindex` → Phase 5
 - ✅ **Animated-Background-Orbs** (Premium-Touch) → Phase 5
-- ⏳ **Git + GitHub + Vercel + Token-Leak-Check** → Phase 6
+- 🚧 **Git + GitHub + Vercel + Token-Leak-Check** → Phase 6
+  - ✅ Token-Leak-Check, Commit, GitHub-Repo (`whiteRoses78/linktree-everlast`) + Push erledigt
+  - ✅ Lokaler Production-Smoke-Test (Phase 6 Teil 1) durch — siehe Changelog 2026-05-16
+  - ⏳ Vercel-Verknüpfung + Production-Smoke-Test (wartet auf Vercel-Support-Antwort wegen GitHub-OAuth-Login)
 - ⏳ **Production Email-Confirmation** + Password-Reset → nach Phase 6, separates Feature
 - ⏳ **Dark-Mode-Toggle** — Tokens sind in `globals.css` schon vorbereitet (`.dark`-Class), Toggle-UI ist optionales Feature nach MVP
 
